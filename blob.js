@@ -6,8 +6,13 @@ function Blob(x, y, radius) {
     this.radius = radius; // initial radius of the blob
 
     this.update = () => {
-        var velocity = createVector(mouseX, mouseY);
-        velocity.sub(this.pos);
+
+        //Mouse position is relative to the main window. Since our blob is always
+        //at centre relative to main window, then the mouse position when at centre
+        // should not move the object in any direction. That is why it is necessary
+        //to subtract half the width and height from x and y, respectively.
+        var velocity = createVector(mouseX - width/2, mouseY - height/2);
+
         //set magnitude set the magnitude of vector to 3, no what how long it is
         //its length will be set to 3.
         velocity.setMag(3);
