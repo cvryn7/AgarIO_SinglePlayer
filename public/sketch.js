@@ -2,6 +2,8 @@ var blob;
 var blobs = [];
 var stars = [];
 var zoom = 1;
+var scores = 0;
+var scorePara;
 
 function setup() {
     createCanvas(600, 600);
@@ -16,6 +18,9 @@ function setup() {
         var y = random(-height * 3, height * 3);
         stars[i] = new Star(x, y, 2);
     }
+
+    scorePara = document.getElementById("scores");
+    scorePara.innerHTML = "<h1>Scores: " + scores + "</h1>"
 
 }
 
@@ -45,6 +50,8 @@ function draw() {
         blobs[i].show();
         if (blob.eats(blobs[i])) {
             blobs.splice(i,1);
+            scores++;
+            scorePara.innerHTML = "<h1>Scores: " + scores + "</h1>"
         }
     }
     for (var i = 0; i < stars.length; i++) {
