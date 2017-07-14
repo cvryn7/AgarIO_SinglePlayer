@@ -25,7 +25,8 @@ function Blob(x, y, radius) {
     this.eats = (otherBlob) => {
         var d = p5.Vector.dist(this.pos, otherBlob.pos);
         if (d < this.radius + otherBlob.radius) {
-            this.radius += otherBlob.radius;
+            var sumArea = PI * this.radius * this.radius + PI * otherBlob.radius * otherBlob.radius;
+            this.radius = sqrt(sumArea/PI);
             return true;
         } else {
             return false;
