@@ -8,6 +8,7 @@ function Blob(x, y, radius, r, g, b) {
     this.r = r;
     this.g = g;
     this.b = b;
+    this.mag = 3;
 
     this.update = () => {
 
@@ -19,7 +20,7 @@ function Blob(x, y, radius, r, g, b) {
 
         //set magnitude set the magnitude of vector to 3, no what how long it is
         //its length will be set to 3.
-        newVelocity.setMag(3);
+        newVelocity.setMag(this.mag);
         this.velocity.lerp(newVelocity, 0.5);
         //this will move our blob toward the direction of mouse
         this.pos.add(this.velocity);
@@ -32,6 +33,7 @@ function Blob(x, y, radius, r, g, b) {
         if (d < this.radius + otherBlob.radius) {
             var sumArea = PI * this.radius * this.radius + PI * otherBlob.radius * otherBlob.radius;
             this.radius = sqrt(sumArea/PI);
+            this.mag += 0.1;
             this.r = otherBlob.r;
             this.g = otherBlob.g;
             this.b = otherBlob.b;
