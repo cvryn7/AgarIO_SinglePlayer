@@ -1,10 +1,14 @@
 //Blob is filled circle which moves
 //on the screen according to user input
 //takes x and y positions, and radius
-function Blob(x, y, radius) {
+function Blob(x, y, radius, r, g, b) {
     this.pos = createVector(x, y);
     this.radius = radius; // initial radius of the blob
     this.velocity = createVector(0.0);
+    this.r = r;
+    this.g = g;
+    this.b = b;
+
     this.update = () => {
 
         //Mouse position is relative to the main window. Since our blob is always
@@ -28,6 +32,9 @@ function Blob(x, y, radius) {
         if (d < this.radius + otherBlob.radius) {
             var sumArea = PI * this.radius * this.radius + PI * otherBlob.radius * otherBlob.radius;
             this.radius = sqrt(sumArea/PI);
+            this.r = otherBlob.r;
+            this.g = otherBlob.g;
+            this.b = otherBlob.b;
             return true;
         } else {
             return false;
@@ -36,7 +43,7 @@ function Blob(x, y, radius) {
 
     //Render the blob
     this.show = () => {
-        fill(255); // blob color
+        fill(this.r, this.g, this.b); // blob color
         ellipse(this.pos.x, this.pos.y, this.radius * 2, this.radius * 2);
     }
 }

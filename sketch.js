@@ -5,17 +5,18 @@ var zoom = 1;
 
 function setup() {
     createCanvas(600, 600);
-    blob = new Blob(width/2, height/2, 64);
-    for (var i = 0; i <50; i++) {
-        var x = random(-width, width*2);
-        var y = random(-height, height*2);
-        blobs[i] = new Blob(x, y, 16);
+    blob = new Blob(width/2, height/2, 64, 255, 255, 255);
+    for (var i = 0; i <200; i++) {
+        var x = random(-width*3, width*3);
+        var y = random(-height*3, height*3);
+        blobs[i] = new Blob(x, y, 16, random(255), random(255), random(255));
     }
     for (var i = 0; i < 500; i++) {
-        var x = random(-width * 3, width * 3);
-        var y = random(-height * 3, height * 3);
+        var x = random(-width * 5, width * 5);
+        var y = random(-height * 5, height * 5);
         stars[i] = new Star(x, y, 2);
     }
+
 }
 
 function draw() {
