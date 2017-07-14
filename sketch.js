@@ -20,10 +20,18 @@ function setup() {
 function draw() {
     background(0);
 
-    //Make our blob stay at the centre and let the world that is
-    //the view move
-    translate(width/2-blob.pos.x, height/2-blob.pos.y);
-
+    /**
+     * Fix our blob in the centre and let the world
+     * move around it. also scale the world down as
+     * our blob's radius increases.
+     */
+    //First move the world to the center of the window
+    translate(width/2, height/2);
+    //then scale the world down by the ratio our blob's radius increased
+    scale(64/blob.radius);
+    //Now translate the world in the opposite direction of our blob's movement
+    translate(-blob.pos.x, -blob.pos.y)
+    blob.show();
     //we are traversing the array backward because if we are
     //removing things from the array as we are going forward through
     //the array, the elements slides backward from the end and we
@@ -37,7 +45,7 @@ function draw() {
     for (var i = 0; i < stars.length; i++) {
         stars[i].show();
     }
-    blob.show();
+
     blob.update();
 
 }
