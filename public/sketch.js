@@ -77,7 +77,7 @@ function draw() {
         blob.update();
         for (i = 0; i < 200; i++) {
             fill(random(255), random(255), random(255));
-            textSize(random(10, 30));
+            textSize(random(50, 70));
             textStyle(BOLD);
             text("YOU WON!", random(-width*2, width*2), random(-height*2, height*2));
         }
@@ -86,7 +86,7 @@ function draw() {
             stars[i].show();
         }
         fill(random(255), random(255), random(255));
-        textSize(50);
+        textSize(100);
         textStyle(BOLD);
         text("YOU WON!", blob.pos.x-130, blob.pos.y-height/2 + 160);
     }
