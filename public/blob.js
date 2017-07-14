@@ -20,7 +20,7 @@ function Blob(x, y, radius, r, g, b) {
         //set magnitude set the magnitude of vector to 3, no what how long it is
         //its length will be set to 3.
         newVelocity.setMag(3);
-        this.velocity.lerp(newVelocity, 0.05);
+        this.velocity.lerp(newVelocity, 0.5);
         //this will move our blob toward the direction of mouse
         this.pos.add(this.velocity);
     }
