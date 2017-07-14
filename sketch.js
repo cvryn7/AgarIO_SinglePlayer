@@ -1,6 +1,7 @@
 var blob;
 var blobs = [];
 var stars = [];
+var zoom = 1;
 
 function setup() {
     createCanvas(600, 600);
@@ -28,10 +29,13 @@ function draw() {
     //First move the world to the center of the window
     translate(width/2, height/2);
     //then scale the world down by the ratio our blob's radius increased
-    scale(64/blob.radius);
+    var newzoom = 64/blob.radius;
+    zoom = lerp(zoom, newzoom, 0.1); // smooth the action of scaling down
+    scale(zoom);
     //Now translate the world in the opposite direction of our blob's movement
     translate(-blob.pos.x, -blob.pos.y)
     blob.show();
+
     //we are traversing the array backward because if we are
     //removing things from the array as we are going forward through
     //the array, the elements slides backward from the end and we
