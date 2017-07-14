@@ -20,7 +20,20 @@ function Blob(x, y, radius) {
         this.pos.add(velocity);
     }
 
-    this.show = function() {
+    //Checks if our blob eats other blob by
+    //calculating the distance difference
+    this.eats = (otherBlob) => {
+        var d = p5.Vector.dist(this.pos, otherBlob.pos);
+        if (d < this.radius + otherBlob.radius) {
+            this.radius += otherBlob.radius;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Render the blob
+    this.show = () => {
         fill(255); // blob color
         ellipse(this.pos.x, this.pos.y, this.radius * 2, this.radius * 2);
     }
