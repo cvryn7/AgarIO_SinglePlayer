@@ -4,6 +4,29 @@ var stars = [];
 var zoom = 1;
 var scores = 0;
 var scorePara;
+var endGame = false;
+var success = false;
+
+function startTimer(duration, displayTag) {
+    var timer = duration, minutes, seconds;
+
+    setInterval( function () {
+        minutes = parseInt(timer/60);
+        seconds = parseInt(timer%60);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        displayTag.innerHTML = "<h1 style=\"color:red\">Finish in: " + minutes + ":" + seconds +"</h1>";
+
+        if ( !success && --timer<=0) {
+            endGame = true;
+            displayTag.innerHTML = "<h1 style=\"color:red\">Refresh to start again!</h1>";
+        } else if (success) {
+            displayTag.innerHTML = "<h1 style=\"color:red\">Refresh to start again!</h1>";
+        }
+
+    }, 1000);
+}
 
 function setup() {
     createCanvas(600, 600);
@@ -20,12 +43,14 @@ function setup() {
     }
 
     scorePara = document.getElementById("scores");
-    scorePara.innerHTML = "<h1>Scores: " + scores + "</h1>"
+    scorePara.innerHTML = "<h1>Score: " + scores + "</h1>"
+    var timerPara = document.getElementById("timer");
 
+    startTimer(120, timerPara);
 }
 
 function draw() {
-    if (scores < 200) {
+    if (scores < 200 && !endGame) {
         background(0);
 
         /**
@@ -52,7 +77,7 @@ function draw() {
             if (blob.eats(blobs[i])) {
                 blobs.splice(i, 1);
                 scores++;
-                scorePara.innerHTML = "<h1 style=\"color:rgb("+Math.round(blob.r) + "," + Math.round(blob.g) + "," + Math.round(blob.b) + ");\">Scores: " + scores + "</h1>"
+                scorePara.innerHTML = "<h1 style=\"color:rgb("+Math.round(blob.r) + "," + Math.round(blob.g) + "," + Math.round(blob.b) + ");\">Score: " + scores + "</h1>"
                 //scorePara.innerHTML = "<h1 style=\"color:rgb(100.50,150.47,200.70)\">Scores: " + scores + "</h1>"
             }
         }
@@ -61,7 +86,8 @@ function draw() {
         }
 
         blob.update();
-    } else {
+    } else if (scores == 200 && !endGame) {
+        success = true;
         background(0);
 
         //First move the world to the center of the window
@@ -77,18 +103,27 @@ function draw() {
         blob.update();
         for (i = 0; i < 200; i++) {
             fill(random(255), random(255), random(255));
-            textSize(random(50, 70));
+            textSize(random(70, 140));
             textStyle(BOLD);
-            text("YOU WON!", random(-width*4, width*4), random(-height*4, height*4));
+            text("YOU WON!", random(-width*6, width*6), random(-height*6, height*6));
         }
 
         for (var i = 0; i < stars.length; i++) {
             stars[i].show();
         }
         fill(random(255), random(255), random(255));
-        textSize(100);
+        textSize(200);
         textStyle(BOLD);
-        text("YOU WON!", blob.pos.x-130, blob.pos.y-height/2 + 160);
+        text("YOU WON!", blob.pos.x-400, blob.pos.y-height/2 + 100);
+    } else {
+        background(0);
+        for (i = 0; i < 200; i++) {
+            fill('red');
+            textSize(random(30, 140));
+            textStyle(BOLD);
+            text("YOU LOSE!", random(-width*4, width*4), random(-height*4, height*4));
+        }
     }
 
 }
+
