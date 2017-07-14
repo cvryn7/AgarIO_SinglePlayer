@@ -79,7 +79,7 @@ function draw() {
             fill(random(255), random(255), random(255));
             textSize(random(50, 70));
             textStyle(BOLD);
-            text("YOU WON!", random(-width*2, width*2), random(-height*2, height*2));
+            text("YOU WON!", random(-width*4, width*4), random(-height*4, height*4));
         }
 
         for (var i = 0; i < stars.length; i++) {
