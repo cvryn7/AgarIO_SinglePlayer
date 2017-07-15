@@ -1,5 +1,5 @@
 <h1>AgarIO SinglePlayer</h1>
-<h3>Link to the demo: https://safe-stream-16702.herokuapp.com/</h3>
+<h3>Link to the demo: https://agaio-single-player.herokuapp.com/</h3>
 <p>AgarIO is the famous Android/IOS game. Check it out here: http://agar.io/</p>
 <hr/>
 <h2>Tech used: Javascript, P5.js, node.js and express.js</h2>
